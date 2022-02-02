@@ -1,0 +1,59 @@
+<!-- Começa o formulário-->
+<h1 id="title">   <i class= "medium material-icons">search</i> Busca Cep</h1>
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <!--Começo do cep-->
+            <div class="input-field col s12">
+                <input onmouseout="consultarCepAjax()" placeholder="Ex: 51000000" id="cep" type="text" class="validate">
+                <label class="active" for="cep">CEP</label>
+            </div>
+
+            <!-- Campo Cidade -->
+            <div class="input-field col s12">
+                <input placeholder="Ex: Cidade" id="localidade" type="text" class="validate">
+                <label class="active" for="localidade">Cidade</label>
+            </div>
+
+            <!-- Campo Rua -->
+            <div class="input-field col s12">
+                <input placeholder="Ex: Rua" id="logradouro" type="text" class="validate">
+                <label class="active" for="logradouro">RUA</label>
+            </div>
+
+            <!-- Canpo Bairro -->
+            <div class="input-field col s12">
+                <input placeholder="Ex: Bairro" id="bairro" type="text" class="validate">
+                <label class="active" for="bairro">BAIRRO</label>
+            </div>
+
+            <!-- Canpo Estado -->
+            <div class="input-field col s12">
+                <input placeholder="Ex: Estado" id="uf" type="text" class="validate">
+                <label class="active"for="uf">ESTADO</label>
+            </div>
+
+            <!-- Campo DDD -->
+            <div class="input-field col s12">
+                <input placeholder="Ex: DDD" id="ddd" type="text" class="validate">
+                <label class="active"for="ddd">DDD</label>
+            </div>
+
+
+        </div>
+
+    </form>
+</div>
+
+<script>
+    /* caso n queira criar uma classe active usar o jquery c essas funções
+    // $("#localidade").focus()
+    // $("#logradouro").focus()
+    // $("#bairro").focus()
+    // $("#uf").focus()
+    // $("#ddd").focus()
+    */
+    //o do cep fica para o cursor inciar nele 
+    $("#cep").focus()
+
+</script>
