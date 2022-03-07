@@ -31,6 +31,7 @@
         <li><a onclick="mudaCep()"> <i class="material-icons">search</i>Busca CEP</a></li>
         <li><a onclick="mudaCalc()" > <i class="material-icons">exposure</i>Calculadora</a></li>
         <li><a onclick="mudaAluno()"> <i class="material-icons">account_box</i>Nota Aluno</a></li>
+        <li><a onclick="mudaPessoa()"><i class="material-icons">mood</i> Crud Pessoa </a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -46,24 +47,9 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/routes.js"></script>
 
 </body>
   
-<script>
 
-function mudaCep() {
-  $("#content").load("./pages/busca-cep.html");
-  $(".sidenav-overlay").click();
-}
-
-function mudaCalc() {
-  $("#content").load("./pages/calculadora.html");
-  $(".sidenav-overlay").click();
-}
-
-function mudaAluno() {
-  $("#content").load("./pages/nota-aluno.html");
-  $(".sidenav-overlay").click();
-}
-</script>
 </html>
