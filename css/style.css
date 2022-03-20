@@ -6,14 +6,34 @@
  * Made By MaterializeCSS.com
  */
 
-.icon-block {
+ .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
-	font-size: inherit;
+	font-size: inherit !important;
 }
 
 #resultado {
-    text-align: center;
-    color: white;
+  text-align: center; 
+  color: white;
+}
+
+.actionBtnView{
+  margin-right: 88px
+}
+.actionBtnEdit{
+  margin-right: 42px
+}
+
+.calc-font{
+  font-size: 20px;
+  margin-bottom: 7px;
+  width: 100%;
+}
+
+.result-calc{
+  color: white;
+  font-size: 37px;
+  border-radius: 3px;
+  width: 97%;
 }

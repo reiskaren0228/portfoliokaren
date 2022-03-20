@@ -1,1 +1,112 @@
 <h1>   <i class= "medium material-icons">exposure</i> Calculadora</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="row result-calc">
+            <div id="displayCalculadora" class="col s12  black result-calc">0</div>
+        </div>
+        <div class="col s3">
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(1)">1</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(4)">4</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(7)">7</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(0)">0</button>
+        </div>
+        <div class="col s3">
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(2)">2</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(5)">5</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(8)">8</button>
+            <button class=" waves-effect  pink calc-font btn-large"                onclick="btnClique('c')">C</button>
+        </div>
+        <div class="col s3">
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(3)">3</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(6)">6</button>
+            <button class=" waves-effect deep-orange accent-1 calc-font btn-large" onclick="btnClique(9)">9</button>
+            <button class=" waves-effect purple accent-1 calc-font btn-large"
+                onclick="btnClique('=')">=</button>
+        </div>
+        <div class="col s3">
+            <button class=" waves-effect waves-light purple lighten-1 calc-font btn-large"
+                onclick="btnClique('-')">-</button>
+            <button class=" waves-effect waves-light purple lighten-1 calc-font btn-large"
+                onclick="btnClique('+')">+</button>
+            <button class=" waves-effect waves-light purple lighten-1 calc-font btn-large"
+                onclick="btnClique('/')">/</button>
+            <button class=" waves-effect waves-light purple lighten-1 calc-font btn-large"
+                onclick="btnClique('*')">*</button>
+        </div>
+    </div>
+
+
+</div>
+<script>
+
+    const operadores = ['+', '-', '*', '/', '=']
+
+    function verDigitoOperador(valorDigito) {
+        if (operadores.includes(valorDigito)) {
+            return true;
+        }
+        return false;
+    }
+
+    function pegarTermos(displayCalculadora) {
+        for (let operador of operadores) {
+            if (displayCalculadora.indexOf(operador) != -1) {
+                return displayCalculadora.split(operador)
+            }
+        }
+        return false
+    }
+
+
+    function fazerCalculo(displayCalculadora) {
+        for (let operador of operadores) {
+            if (displayCalculadora.indexOf(operador) != -1) {
+                let termosCalculo = pegarTermos(displayCalculadora)
+                if (Boolean(termosCalculo[0]) && Boolean(termosCalculo[1])) {
+                    return eval(displayCalculadora)
+                } else {
+                    return false
+                }
+            }
+        }
+        return false
+    }
+
+
+    function adicionarDigito(displayCalculadora, valorDigito) {
+        let resultadoCalculo = fazerCalculo(displayCalculadora)
+        let temOperador = pegarTermos(displayCalculadora)
+        let digitoOperador = verDigitoOperador(valorDigito)
+
+        if (displayCalculadora == '0') {
+            return valorDigito
+        } else if ((resultadoCalculo || resultadoCalculo === 0) && digitoOperador) {
+            return resultadoCalculo
+        } else if (temOperador && digitoOperador) {
+            return displayCalculadora
+        } else {
+            displayCalculadora = displayCalculadora + '' + valorDigito;
+            return displayCalculadora
+        }
+
+    }
+
+
+    function btnClique(valorDigito) {
+        let displayCalc = $('#displayCalculadora')
+        let displayCalculadora = displayCalc.html();
+
+        if (valorDigito == 'c') {
+            displayCalc.html(0)
+        } else if (displayCalculadora == '0' && verDigitoOperador(valorDigito)) {
+            displayCalc.html(0)
+        } else if (displayCalculadora > 0 && valorDigito == '=') {
+            displayCalc.html(displayCalculadora)
+        } else {
+            let resultadoAdicionar = adicionarDigito(displayCalculadora, valorDigito)
+            displayCalc.html(resultadoAdicionar)
+        }
+
+    }
+</script>

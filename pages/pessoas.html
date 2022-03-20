@@ -1,49 +1,131 @@
 <h4 id="titleCrud">Lista de alunos</h4>
-<button id="btnInserir" onclick="addAluno()" class="btn waves-effect waves-light" name="action">Inserir novo
+<button id="btnInserir" onclick="addAluno()" class="btn waves-effect pink lighten-1" name="action">Inserir novo
     <i class="material-icons right">add</i>
 </button>
 
+<style>
+    label {
+        width: 100%;
+    }
+
+    .input-field label {
+        font-size: 0.8rem;
+        -webkit-transform: translateY(-140%);
+        -moz-transform: translateY(-140%);
+        -ms-transform: translateY(-140%);
+        -o-transform: translateY(-140%);
+        transform: translateY(-140%);
+    }
+</style>
+
 <div hidden id="formCrud" class="row">
-    <form class="col s12">
+    <form id="formularioValidation" novalidate="novalidate" class="col s12">
         <div class="row">
             <div id="inputId" class="input-field col s12">
                 <input disabled placeholder="0" id="id" type="text">
-                <label class="active" for="id">Id</label>
-            </div>
-            <div class="input-field col s12">
-                <input placeholder="Henning" id="nome" type="text" class="validate">
-                <label class="active" for="first_name">Nome</label>
-            </div>
-            <div class="input-field col s12">
-                <input placeholder="Frontend" id="curso" type="text" class="validate">
-                <label class="active" for="first_name">Curso</label>
-            </div>
-            <div class="input-field col s12">
-                <input placeholder="ds54455" id="matricula" type="text" class="validate">
-                <label class="active" for="first_name">Matricula</label>
+                <label for="id">Id</label>
             </div>
         </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Seu Nome" required="" aria-required="true" id="nome" name="nome" type="text">
+                <label class="active" for="nome">Nome</label>
+                <span for="nome" class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Seu Curso" required="" aria-required="true" id="curso" name="curso" type="text">
+                <label class="active" for="curso">Curso</label>
+                <span for="curso" class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Nº de matricula" required="" aria-required="true" id="matricula" name="matricula"
+                    type="text">
+                <label class="active" for="matricula">Matricula</label>
+                <span for="matricula" class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+        </div>
+        <button id="btnSalvar" onclick="salvarDados()" class="btn waves-effect pink lighten-1" name="action">Salvar
+            <i class="material-icons right">send</i>
+        </button>
     </form>
-    <button id="btnSalvar" onclick="salvarDados()" class="btn waves-effect waves-light" name="action">Salvar
-        <i class="material-icons right">send</i>
-    </button>
-    <button hidden id="btnAtualizar" onclick="atualizarDados()" class="btn waves-effect waves-light"
+    <button hidden id="btnAtualizar" onclick="atualizarDados()" class="btn waves-effect pink lighten-1"
         name="action">Atualizar
         <i class="material-icons right">send</i>
     </button>
-    <button onclick="cancelar()" class="btn waves-effect waves-light" name="action">Cancelar
+    <button onclick="cancelar()" class="btn waves-effect pink lighten-1" name="action">Cancelar
         <i class="material-icons right">close</i>
     </button>
 </div>
 
 <ul id="pessoas" class="collection">
 
+
 </ul>
+
+<div class="row center">
+    <div class="s12">
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a onclick="listarDados()">1</a></li>
+            <li class="waves-effect"><a onclick="listarDados()">2</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- <form>
+    <input type="text" name="coat" value="1" />
+    <input type="number" name="jacket" value="2" />
+    <input type="number" name="jeans" value="3" />
+    <input type="number" name="guid" value="4" />
+    <input name="dt2" type="checkbox">
+    <input name="dt4" type="color">
+    <input name="dt5" type="date">
+    <input name="dt6" type="datetime-local">
+    <input name="dt7" type="email"><br>
+    <input name="dt8" type="file"><br>
+    <input name="dt9" type="hidden"><br>
+    <input name="dt11" type="month"><br>
+    <input name="dt12" type="number"><br>
+    <input name="dt13" type="password"><br>
+    <input name="dt14" type="radio"><br>
+    <input name="dt15" type="range"><br>
+    <input name="dt16" type="reset"><br>
+    <input name="dt17" type="search"><br>
+    <input name="dt19" type="tel"><br>
+    <input name="dt20" type="time"><br>
+    <input name="dt21" type="url"><br>
+    <input name="dt22" type="week">
+    <select name="education">
+        <option value="Jr.High">Jr.High</option>
+        <option value="HighSchool">HighSchool</option>
+        <option value="College">College</option>
+    </select>
+    <textarea name="something">lorem ipsum</textarea>
+    <input type="submit" value="Enviar" />
+</form>
+<div id="result"></div> -->
+
+<!-- <script>
+    $('form').submit(function () {
+        var result = $("form").serializeFields();
+        $("#result").html(JSON.stringify(result));
+        console.log(result)
+        return false;
+    });
+</script> -->
 
 <script>
 
-// Mostrar o formulário de inserção do aluno
+    // Mostrar o formulário de inserção do aluno
     function addAluno() {
+
+        limparForm()
         $('#titleCrud').html('Inserir aluno');
         $('#formCrud').show()
         $('#pessoas').hide()
@@ -51,7 +133,7 @@
         $('#btnInserir').hide()
         $('#btnSalvar').show()
         $('#btnAtualizar').hide()
-        limparForm()
+
     }
 
     // Limpar dados dos formulário
@@ -59,6 +141,8 @@
         let inputs = $('input')
         for (let index = 0; index < inputs.length; index++) {
             inputs[index].value = ''
+            $(inputs[index]).removeClass('invalid')
+            $(inputs[index]).removeClass('valid')
         }
 
         // $('#nome').val('')
@@ -85,8 +169,11 @@
     }
 
     // Carregar dados de todos os alunos
+    var page = 0
+    var limit = 15
     function listarDados() {
-        $.getJSON('https://api-server-senac.herokuapp.com/alunos', function (data, status) {
+        // page++
+        $.getJSON(`https://api-server-senac.herokuapp.com/alunos?_page=${page}&_limit=${limit}`, function (data, status) {
             console.log(data)
             let pessoas = []
 
@@ -149,25 +236,101 @@
 
     // Salvar dados do aluno
     function salvarDados() {
-        var dados = $("input")
+        var result = $("form").serializeFields();
 
-        dadosSalvar = {
-            nome: dados[1].value,
-            curso: dados[2].value,
-            matricula: dados[3].value
-        }
-        console.log('dados pra salvar', dadosSalvar)
+        $.validator.setDefaults({
+            errorClass: 'invalid',
+            validClass: "valid",
+            errorPlacement: function (error, element) {
+                $(element)
+                    .closest("form")
+                    .find("span[for='" + element.attr("id") + "']")
+                    .attr('data-error', error.text());
+            },
+            submitHandler: function (form) {
 
-        // fetch("http://localhost:3000/alunos", {method: "post", body: dadosSalvar}).then(function (res){
-        //     console.log('os dados foram salvos', res)
-        // })
+                console.log('form aaa', form)
 
-        $.post("https://api-server-senac.herokuapp.com/alunos", dadosSalvar, function (result) {
-            console.log('os dados foram salvos', result)
-            cancelar()
-            listarDados()
-        })
+                var result = $('form').serializeFields();
+                // $("#result").html(JSON.stringify(result));
+                delete result['action']
+                console.log(result)
+
+
+                var dados = $("input")
+
+                dadosSalvar = {
+                    nome: dados[1].value,
+                    curso: dados[2].value,
+                    matricula: dados[3].value
+                }
+
+                fetch("https://api-server-senac.herokuapp.com/alunos",
+                    {
+                        method: "post",
+                        body: JSON.stringify(dadosSalvar),
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    }).then(async function (res) {
+                        let dt = await res.json()
+                        console.log('os dados foram salvos', dt)
+                        listarDados()
+                        cancelar()
+                    })
+
+                // $.post("https://api-server-senac.herokuapp.com/alunos", dadosSalvar, function (result) {
+                //     console.log('os dados foram salvos', result)
+                //     cancelar()
+                //     listarDados()
+                // })
+
+                // console.log('form ok', dadosSalvar);
+            }
+        });
+
+        $("#formularioValidation").validate({
+            // debug: true,
+            rules: {
+                nome: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 4,
+                    rangelength: [3, 4] //Realiza a mesma coisa dos anteriores
+                },
+                curso: {
+                    required: true,
+                    min: 10,
+                    max: 15,
+                    range: [10, 15] //Realiza a mesma coisa dos anteriores
+                },
+                matricula: {
+                    required: true,
+                    min: 10,
+                    max: 15,
+                    range: [10, 15] //Realiza a mesma coisa dos anteriores
+                }
+            },
+            messages: {
+                //exemplo
+                nome: {
+                    minlength: "O valor mínimo é {0}",
+                    maxlength: "O valor máximo do campo é {0}",
+                    required: 'O campo nome é obrigatório',
+                },
+                curso: {
+                    min: "O valor mínimo é {0}",
+                    max: "O valor máximo do campo é {0}",
+                    range: "O valor mínimo é {0} e o máximo é {1}",
+                    required: 'O campo nome é obrigatório',
+                },
+                curso: {
+                    required: 'O campo nome é obrigatório',
+                }
+            }
+        });
     }
+
 
     // Atualizar dados do aluno
     function atualizarDados() {
@@ -179,10 +342,6 @@
             matricula: dados[3].value
         }
         console.log('dados pra salvar', dadosSalvar)
-
-        // fetch("http://localhost:3000/alunos", {method: "post", body: dadosSalvar}).then(function (res){
-        //     console.log('os dados foram salvos', res)
-        // })
 
         $.ajax({
             type: "PUT",
